@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HustRef</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="ambient-shape shape-one"></div>
+    <div class="ambient-shape shape-two"></div>
+
+    <header class="app-header">
+        <div>
+            <p class="eyebrow">HUST THESIS TOOLKIT</p>
+            <h1>HustRef</h1>
+            <p class="subtitle">将 BibTeX / EndNote / ACM Ref 转换为华中科技大学硕士论文参考文献格式</p>
+        </div>
+        <div class="header-card">
+            <p class="header-label">规则提醒</p>
+            <p>作者最多显示 6 位，超过自动添加 <code>等</code> 或 <code>et al</code></p>
+            <p>输出行末不带任何标点符号</p>
+        </div>
+    </header>
+
+    <main class="panel-grid">
+        <section class="panel panel-input">
+            <div class="panel-title-row">
+                <h2>输入区</h2>
+                <div class="controls-inline">
+                    <label>
+                        输入格式
+                        <select id="sourceSelect">
+                            <option value="auto" selected>自动检测</option>
+                            <option value="bibtex">BibTeX</option>
+                            <option value="endnote">EndNote</option>
+                            <option value="acm_ref">ACM Ref</option>
+                        </select>
+                    </label>
+                    <label class="checkbox-control">
+                        <input id="strictCheckbox" type="checkbox">
+                        严格模式
+                    </label>
+                </div>
+            </div>
+            <textarea id="inputText" placeholder="请粘贴参考文献原始内容。支持多条输入。"></textarea>
+            <div class="button-row">
+                <button id="convertBtn" class="btn btn-primary">转换</button>
+                <button id="sampleBtn" class="btn btn-secondary">填充示例</button>
+            </div>
+        </section>
+
+        <section class="panel panel-output">
+            <div class="panel-title-row">
+                <h2>输出区</h2>
+                <div class="controls-inline">
+                    <button id="copyBtn" class="btn btn-secondary">一键复制</button>
+                </div>
+            </div>
+            <textarea id="outputText" readonly placeholder="转换结果将在这里显示"></textarea>
+            <div id="summaryBar" class="summary-bar"></div>
+        </section>
+    </main>
+
+    <section class="panel panel-diagnostics">
+        <div class="panel-title-row">
+            <h2>解析与校验提示</h2>
+        </div>
+        <div id="diagnosticsList" class="diagnostics-list">
+            <p class="hint">点击“转换”后显示解析结果和缺失字段提示。</p>
+        </div>
+    </section>
+
+    <script src="/app.js"></script>
+</body>
+</html>
+

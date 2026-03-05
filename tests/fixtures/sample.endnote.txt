@@ -1,0 +1,16 @@
+%0 Journal Article
+%T Confidential VMs Explained: An Empirical Analysis of AMD SEV-SNP and Intel TDX
+%V 8
+%U https://doi.org/10.1145/3700418
+%R 10.1145/3700418
+%N 3
+%J Proc. ACM Meas. Anal. Comput. Syst.
+%I Association for Computing Machinery
+%A Masanori Misono
+%A Dimitrios Stavrakakis
+%A Nuno Santos
+%A Pramod Bhatotia
+%D 2024
+%P Article 36
+%K amd sev-snp, confidential computing, intel tdx, virtual machine
+
