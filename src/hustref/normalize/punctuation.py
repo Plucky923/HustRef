@@ -19,6 +19,7 @@ def _normalize_spacing(text: str) -> str:
     value = re.sub(r"\s+:(?!/)", ":", value)
     value = re.sub(r",\s*", ", ", value)
     value = re.sub(r":(?!/)\s*", ": ", value)
+    value = re.sub(r"(?i)\barxiv:\s+(\d)", r"arXiv:\1", value)
     return re.sub(r"\s+", " ", value).strip()
 
 

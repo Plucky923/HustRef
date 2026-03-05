@@ -34,5 +34,31 @@ keywords = {amd sev-snp, confidential computing, intel tdx, virtual machine}
 %D 2024
 %P Article 36
 %K amd sev-snp, confidential computing, intel tdx, virtual machine
-# ACMRef
+## ACMRef
 Masanori Misono, Dimitrios Stavrakakis, Nuno Santos, and Pramod Bhatotia. 2024. Confidential VMs Explained: An Empirical Analysis of AMD SEV-SNP and Intel TDX. Proc. ACM Meas. Anal. Comput. Syst. 8, 3, Article 36 (December 2024), 42 pages. https://doi.org/10.1145/3700418
+# Test 2
+## BibTex
+@inproceedings {chen2023duvisor,
+author = {Jiahao Chen and Dingji Li and Zeyu Mi and Yuxuan Liu and Binyu Zang and Haibing Guan and Haibo Chen},
+title = {Security and Performance in the Delegated User-level Virtualization},
+booktitle = {17th USENIX Symposium on Operating Systems Design and Implementation (OSDI 23)},
+year = {2023},
+isbn = {978-1-939133-34-2},
+address = {Boston, MA},
+pages = {209--226},
+url = {https://www.usenix.org/conference/osdi23/presentation/chen},
+publisher = {USENIX Association},
+month = jul,
+}
+# Test 3
+## BibTex
+@misc{stolet2025virtuosohighresourceutilization,
+      title={Virtuoso: High Resource Utilization and {\mu}s-scale Performance Isolation in a Shared Virtual Machine TCP Network Stack}, 
+      author={Matheus Stolet and Liam Arzola and Simon Peter and Antoine Kaufmann},
+      year={2025},
+      eprint={2309.14016},
+      archivePrefix={arXiv},
+      primaryClass={cs.NI},
+      url={https://arxiv.org/abs/2309.14016}, 
+}
+# Test 4

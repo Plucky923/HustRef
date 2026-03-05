@@ -24,7 +24,7 @@ def normalize_fields(record: ReferenceRecord) -> ReferenceRecord:
             cleaned[key] = record.authors
             continue
         if isinstance(value, str):
-            cleaned[key] = _collapse_whitespace(value)
+            cleaned[key] = _collapse_whitespace(_normalize_markup(value))
         else:
             cleaned[key] = value
 
@@ -43,3 +43,12 @@ def normalize_fields(record: ReferenceRecord) -> ReferenceRecord:
 def _collapse_whitespace(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip()
 
+
+def _normalize_markup(value: str) -> str:
+    normalized = value
+    normalized = re.sub(r"\{\\mu\}\s*s", "us", normalized)
+    normalized = re.sub(r"\\mu\s*s", "us", normalized)
+    normalized = re.sub(r"\{\\mu\}", "mu", normalized)
+    normalized = re.sub(r"\\mu\b", "mu", normalized)
+    normalized = normalized.replace("{", "").replace("}", "")
+    return normalized

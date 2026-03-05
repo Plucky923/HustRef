@@ -67,7 +67,12 @@ def validate_record(record: ReferenceRecord) -> list[ValidationIssue]:
             )
         )
 
-    if record.type == "journal" and not record.volume and not record.issue:
+    if (
+        record.type == "journal"
+        and not _is_preprint_journal(record)
+        and not record.volume
+        and not record.issue
+    ):
         issues.append(
             ValidationIssue(
                 level="warning",
@@ -92,3 +97,7 @@ def _has_field_value(record: ReferenceRecord, field: str) -> bool:
         return bool(value.strip())
     return bool(value)
 
+
+def _is_preprint_journal(record: ReferenceRecord) -> bool:
+    name = record.journal_name.strip().lower()
+    return name.startswith("arxiv:")

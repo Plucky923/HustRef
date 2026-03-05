@@ -66,6 +66,26 @@ class ValidationTests(unittest.TestCase):
         self.assertTrue(payload["entries"][0]["skipped"])
         self.assertEqual(payload["entries"][0]["issues"][0]["field"], "year")
 
+    def test_arxiv_misc_has_no_journal_missing_error(self) -> None:
+        text = """@misc{stolet2025virtuoso,
+          title={Virtuoso: High Resource Utilization and {\\mu}s-scale Performance Isolation in a Shared Virtual Machine TCP Network Stack},
+          author={Matheus Stolet and Liam Arzola and Simon Peter and Antoine Kaufmann},
+          year={2025},
+          eprint={2309.14016},
+          archivePrefix={arXiv},
+          primaryClass={cs.NI},
+          url={https://arxiv.org/abs/2309.14016}
+        }"""
+        report = convert_with_diagnostics(text, source_format="bibtex", strict=True)
+        self.assertFalse(report.has_errors)
+        self.assertEqual(len(report.entries), 1)
+        entry = report.entries[0]
+        self.assertEqual(entry.record.journal_name, "arXiv:2309.14016")
+        self.assertEqual(entry.record.year, "2025")
+        self.assertEqual(entry.issues, [])
+        self.assertIn("arXiv:2309.14016, 2025", entry.output)
+        self.assertIn("us-scale", entry.output)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -10,6 +10,7 @@ _ENTRY_START_RE = re.compile(r"@(?P<entry_type>\w+)\s*\{", re.IGNORECASE)
 
 _TYPE_MAP = {
     "article": "journal",
+    "misc": "journal",
     "book": "book",
     "inproceedings": "conference",
     "conference": "conference",
@@ -153,11 +154,13 @@ def _map_fields_to_record(
         else:
             pages = f"Article {article_no}"
 
+    journal_name = _build_journal_name(fields)
+
     return ReferenceRecord(
         type=record_type,
         authors=authors,
         title=fields.get("title", ""),
-        journal_name=fields.get("journal", ""),
+        journal_name=journal_name,
         conference_name=fields.get("booktitle", ""),
         year=fields.get("year", ""),
         volume=fields.get("volume", ""),
@@ -177,3 +180,19 @@ def _map_fields_to_record(
         source_key=source_key,
         raw_source=raw_source,
     )
+
+
+def _build_journal_name(fields: dict[str, str]) -> str:
+    journal = fields.get("journal", "").strip() or fields.get("journaltitle", "").strip()
+    if journal:
+        return journal
+
+    archive_prefix = fields.get("archiveprefix", "").strip()
+    eprint = fields.get("eprint", "").strip()
+    if archive_prefix and eprint:
+        return f"{archive_prefix}:{eprint}"
+
+    if eprint:
+        return f"arXiv:{eprint}"
+
+    return ""
